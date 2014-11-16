@@ -6,7 +6,7 @@
         Kenneth Durril
       </atom:name>
     </atom:author>
-  <Style id="west_campus_style">
+  <Style id="">
   <IconStyle>
     <Icon>
       <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png
@@ -34,7 +34,7 @@
 </table> <p>Source: http://webapps.achd.net/Restaurant/RestaurantDetail.aspx?ID=200510030001 as of August 16, 2011</p>]]>      </description>
       <Point>
         <coordinates>
-          40.4284743, -79.9656609
+          -79.9656609, 40.4284743 
         </coordinates>
       </Point>
     </Placemark>
