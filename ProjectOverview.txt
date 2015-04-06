@@ -1,0 +1,125 @@
+Readme
+The Allegheny Country Health Department restaurant inspection project is the result of several years of work.
+The primary goal is to gather data for accessment purposes. This includes 4 major parts
+1) Gathering restaurant ids from the ACHD Restaurant Health Inspection site
+2) Pulling basic organizational data and inspection ids from the site
+3) Pulling PFDs of the individual inspections based on inspection ids
+4) Restructuring pdf data into full-text search database
+5) Consider semi-supervised learning given structured and unstructured data for 
+
+Files:
+achd_direct_update
+    in Python2.7
+	retrieves restaurant id from achd query website
+achd_scrapy project - this is a folder for scrapy
+    in Python 2.7
+    retrieves restaurant basic data and inspection id
+    scrapy crawl achdspider -o achd_output.json -t json
+achd_inspect_id / achd_inspect_id_3
+    retrieves inspection pdf files
+    converts pdf to text
+achd_pdf_processor
+    move convert_pdf to new module
+inspection_parse.py
+    parses text in 3 parts
+    1) Restaurant and Inspection Metadata
+    2) Assessment elements
+    3) Violation blocks
+achd_db.py
+    creates the database to hold parsed record
+    3 tables
+    1) inspect
+    2) assessment
+    3) violation
+
+achd_db_build.py
+    uses inspection_parse to insert records into achd_db
+
+achd_db_review.py
+    series of tests to see how well the data was parsed and transfered
+
+achd_textdb.py
+    this should upload the inspections to Postgresql for full-text search
+
+map
+
+twitter bot - find shocking word, expand to pull full sentence.
+
+CHAIN EVENTS TOGETHER to scrape restaurant ids and end with parsed text documents
+Set file names and folders so that date is included
+Set logging
+
+Review of parsed records for accurate reproduction of PDF data
+    should each inspection id be unique?
+    which field should not be null?
+
+Data can be used to critique individual restaurants or the health department
+
+Descriptive Stats
+
+Inferential Stats
+
+Research Questions:
+Does the current warning system have an empirical basis for concern?
+Could I use a clustering method to cluster the files
+Then use a classification method to label the records and find similar records
+
+Are any areas over or underrepresented by inspection rate given incidence of violations?
+
+Is the inspector significant when including geography?
+
+Are corporate restaurants more likely to be satisfatory, should less time be spent on corporates?
+
+Can time from certification predict violations?
+
+Are any assessment categories unobserved throughout the dataset?
+
+Can we correlate any behaviors from this dataset to food safety training?
+
+Can we correlate the behaviors to profit seeking? Might the violations, be driven by other factors?
+What is the cost of a violation?
+Is cost of a violation enough to deter that behavior?
+Is the cost of a violation in consideration of harm to public health?
+
+
+
+# Inspection Text Model/Structure/Categories
+    client_id
+	address
+	city
+	phone
+            
+    client_name
+    state
+    zipcode
+
+    date_open:
+    municipality: 
+
+    inspect_id:
+    inspector:
+    re_inspection:
+    inspection_date:
+
+    #Assessment catagories
+    food_source_condition
+    cooking_temperatures
+    consumer advisory
+    reheating_temperatures
+    cooling_food
+    hot_holding_temperatures
+    cold_holding_temperatures
+    facilities_maintain_temperature
+    date_marking
+    probe_type_thermometer
+    cross_contamination_prevention
+    employee_health
+    personal_hygiene
+    sanitization
+    water_supply
+    waste_water_disposal
+    plumbing
+    handwashing_facilities
+    pest_management
+    certified_manager
+    demonstration_of_knowledge
