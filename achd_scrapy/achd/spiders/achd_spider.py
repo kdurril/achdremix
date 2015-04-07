@@ -8,6 +8,10 @@ from itertools import chain
 class AchdSpider(BaseSpider):
 
     name = 'achdspider'
+
+    #Download about 2 hours 12 minutes for 8000 pages
+    download_delay = 1
+    
     allowed_domains = ['http://webapps.achd.net/Restaurant/']
     base_url = 'http://webapps.achd.net/Restaurant/RestaurantDetail.aspx?ID='
     
@@ -15,9 +19,6 @@ class AchdSpider(BaseSpider):
         r_read = rids.read()
         
     start_urls = [base_url+'''{r_id}'''.format(r_id=str(x)) for x in r_read.split("\n")]
-
-    
-
 
     #rules = [Rule(SgmlLinkExtractor(allow=['/tor/\d+']), 'parse_torrent')]
 

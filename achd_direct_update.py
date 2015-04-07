@@ -4,10 +4,7 @@
 #must use javascript for multipage zipcodes
 
 from selenium import webdriver
-from BeautifulSoup import BeautifulSoup
-import re, time, codecs, urllib2, StringIO, gzip
-#from multiprocessing import Pool
-#from multiprocessing.dummy import Pool as ThreadPool
+import re, time
 from random import random
 
 #zip code list
@@ -139,8 +136,6 @@ def run_zip():
         pnavloop()
         time.sleep(random()*2+2)
 
-run_zip()
-
 def go_zip(zipcode):
     driver = webdriver.Firefox()
     time.sleep(random()*2+1)
@@ -153,6 +148,9 @@ def pooled_zip():
     results = pool.map(go_zip, zlm[:4])
     pool.close()
     pool.join()
+
+if __name__ == '__main__':
+    run_zip()
 
 
 """
