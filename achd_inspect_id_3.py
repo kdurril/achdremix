@@ -1,4 +1,4 @@
-#usr/bin/python
+#!/usr/bin/python3
 "ACHD inspection record retrieval"
 "open previously gathered inspection ids"
 "save pdf files for reference"
@@ -7,6 +7,8 @@
 "convert xml to fulltext Postgresql"
 
 import json, re, time, codecs, urllib.request
+from itertools import chain
+
 import subprocess
 #import tempfile, os 
 from multiprocessing import Pool
@@ -14,12 +16,13 @@ from multiprocessing.dummy import Pool as ThreadPool
 import glob
 
 
-#find difference from october to march
-#march and october inspect list structure differ
-#march is simple list, october is nested list
+#find difference from october to april
+#october and october inspect list structure differ
+#october is simple list, october is nested list
 
-a = "achd_output_2014_03_16.json"
-b = "achd_output_2014_10_22.json"
+a = "achd_output_2014_10_22.json"
+b = "achd_output_2015_04_07.json"
+
 
 def get_id(json_output):
     "retrieve inspection id from achd_output file"
@@ -27,15 +30,15 @@ def get_id(json_output):
         achd_j = json.loads(achd_output.read())
     return achd_j
 
-march = get_id(a)
-october = get_id(b)
+october = get_id(a)
+april = get_id(b)
 
-march_id = [list(chain(x['inspect'])) for x in march]
-march_id = list(chain.from_iterable(march_id))
-october_id = [list(chain.from_iterable(x['inspect'])) for x in october]
+october_id = [list(chain(x['inspect'])) for x in october]
 october_id = list(chain.from_iterable(october_id))
+april_id = [list(chain.from_iterable(x['inspect'])) for x in april]
+april_id = list(chain.from_iterable(april_id))
 
-new_id = set(october_id).difference(set(march_id))
+new_id = set(april_id).difference(set(october_id))
 
 #base_restaurant = 'http://webapps.achd.net/Restaurant/RestaurantDetail.aspx?ID='
 #base_inpsection = 'http://hdas01.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER='
@@ -54,13 +57,13 @@ def getpdf_basic(start, end):
         #for view in achd_j[x]['inspect']:
         for inspection in new_id:
             opener = urllib.request.build_opener()
-            opener.addheaders = [('User-agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:25.0) Gecko/20100101 Firefox/25.0'), ('Accept-encoding', 'gzip')]
+            opener.addheaders = [('User-agent', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:37.0.1) Gecko/20100101 Firefox/37.0.1'), ('Accept-encoding', 'gzip')]
             with opener.open(base_inspection+inspection) as viewout:
                 #compresseddata = viewout.read()
                 #compressedstream = StringIO.StringIO(compresseddata)
                 #gzipper = gzip.GzipFile(fileobj=compressedstream)
                 #comp_viewout = gzipper.read()
-                with open('Inspections_october/'+inspection+'.pdf', "wb") as pdfout:
+                with open('Inspections_2014_04_07/'+inspection+'.pdf', "wb") as pdfout:
                     #convert = convert_pdf_to_text_with_pdf2txt(viewout.read())
                     pdfout.write(viewout.read())
                     time.sleep(2)

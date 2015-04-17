@@ -1,5 +1,5 @@
+#!/usr/bin/python3
 #-*- coding: utf-8 -*-
-#python 3
 "ACHD inspection record retrieval"
 "open previously gathered inspection ids"
 "save pdf files for reference"
