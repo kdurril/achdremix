@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 #
 #revised parser for achd documents
+#Parse function is primary
+#ParseDoc class is subdivided for easy access to smaller info
 
 import json
+import glob
 from collections import OrderedDict
 from itertools import chain
 
