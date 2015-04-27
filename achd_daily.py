@@ -2,9 +2,9 @@
 #
 # This is a daily file for downloading achd inspections
 
-import time,\
-       urllib.request,\
-       urllib.error
+import time
+import urllib.request
+import urllib.error
 import datetime as dt
 from os import mkdir, path
 
