@@ -11,7 +11,7 @@ from os import mkdir, path
 def url_prep(delta=1, count=49):
     "Create iterator of urls, default yesterday, 49 inspections"
     
-    url_stem = "http://hdas01.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER="
+    url_stem = "http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER="
     d = dt.date.today()
     d1 = dt.timedelta(days=delta)
     day = '{:%Y%m%d}'.format(d-d1)
