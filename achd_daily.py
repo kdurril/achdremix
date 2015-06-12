@@ -11,7 +11,7 @@ from os import mkdir, path
 def url_prep(delta=1, count=49):
     "Create iterator of urls, default yesterday, 49 inspections"
     
-    url_stem = "http://hdas01.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER="
+    url_stem = "http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER="
     d = dt.date.today()
     d1 = dt.timedelta(days=delta)
     day = '{:%Y%m%d}'.format(d-d1)
@@ -37,11 +37,11 @@ def grab_pdf(inspection):
             outputfolder = folder+'/'+pdffile+'.pdf'
             with open(outputfolder, "wb") as pdfout:
                 pdfout.write(viewout.read())
-                time.sleep(2)
+                time.sleep(15)
 
 if __name__ == '__main__':
 
-    encounters = url_prep(delta=1, count=55)
+    encounters = url_prep(delta=6, count=30)
 
     for inspection in encounters:
         try:
