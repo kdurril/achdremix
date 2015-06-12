@@ -31,13 +31,14 @@ def grab_pdf(inspection):
     folder = inspection[-12:-4]
     pdffile = inspection[-12:]
     with opener.open(inspection) as viewout:
-        if path.isdir(folder) == False:
-            mkdir(folder)
-        else:    
-            outputfolder = folder+'/'+pdffile+'.pdf'
-            with open(outputfolder, "wb") as pdfout:
-                pdfout.write(viewout.read())
-                time.sleep(15)
+        if viewout.getheader('Content-Type') == 'application/pdf'
+            if path.isdir(folder) == False:
+                mkdir(folder)
+            else:    
+                outputfolder = folder+'/'+pdffile+'.pdf'
+                with open(outputfolder, "wb") as pdfout:
+                    pdfout.write(viewout.read())
+                    time.sleep(2)
 
 if __name__ == '__main__':
 
