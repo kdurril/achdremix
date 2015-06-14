@@ -23,7 +23,8 @@ def get_id():
     return achd_j
 
 base_restaurant = 'http://webapps.achd.net/Restaurant/RestaurantDetail.aspx?ID='
-base_inpsection = 'http://hdas01.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER='
+#base_inpsection = 'http://hdas01.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER='
+base_inspection = 'http://appsrv.achd.net/reports/rwservlet?food_rep_insp&P_ENCOUNTER='
 
 def convert_pdf():
     "Get file pdf, send to pdf2txt"
