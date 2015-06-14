@@ -31,7 +31,7 @@ def grab_pdf(inspection):
     folder = inspection[-12:-4]
     pdffile = inspection[-12:]
     with opener.open(inspection) as viewout:
-        if viewout.getheader('Content-Type') == 'application/pdf'
+        if viewout.getheader('Content-Type') == 'application/pdf':
             if path.isdir(folder) == False:
                 mkdir(folder)
             else:    
@@ -42,7 +42,7 @@ def grab_pdf(inspection):
 
 if __name__ == '__main__':
 
-    encounters = url_prep(delta=6, count=30)
+    encounters = url_prep(delta=10, count=40)
 
     for inspection in encounters:
         try:
