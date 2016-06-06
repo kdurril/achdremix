@@ -1,6 +1,9 @@
 #!/usr/bin/jython
 # -*- coding: utf-8 -*-
 #
+# Parse ACHD PDF from 2014-03-01 to present
+# this accounts for grid structure of Food Safety Assessment
+# return the document as a json document
 
 import org.apache.pdfbox.pdmodel
 import org.apache.pdfbox.text
