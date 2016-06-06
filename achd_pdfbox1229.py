@@ -23,6 +23,7 @@ from collections import OrderedDict
 #import csv
 
 class achdInspect(object):
+    "open file, create region boxes, extract text from regions, export"
     def __init__(self, filename):
         self.filename=filename
         with open(filename, "rb") as opendfile:
@@ -44,6 +45,7 @@ class achdInspect(object):
         #self.region_chain = self.chain_regions()
 
     class regionBox(object):
+        "make regions from java rectangles"
         def __init__(self, label, boxinit, boxcount):
             self.label = label
             self.boxinit = boxinit
